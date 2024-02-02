@@ -1,3 +1,4 @@
+// Przypisz do obiektu: Menu - Options
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

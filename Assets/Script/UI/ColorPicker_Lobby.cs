@@ -1,6 +1,8 @@
+// Przypisz do obiektu: PlayerLobby
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +10,7 @@ public class ColorPicker_Lobby : MonoBehaviour
 {
     public static ColorPicker_Lobby instance;
 
-    public Color color;
+    Color color;
     RectTransform Rect;
     Texture2D ColorTexture;
     public GameObject ColorOfTop;
@@ -19,27 +21,20 @@ public class ColorPicker_Lobby : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(this);
-        }
+        if (instance == null) instance = this;
+        else if (instance != this) Destroy(this);
     }
 
     void Start()
     {
         objectThatChange = ColorOfTop.GetComponent<Renderer>();
         Rect = GetComponent<RectTransform>();
-
         ColorTexture = GetComponent<Image>().mainTexture as Texture2D;
     }
 
     void Update()
     {
-        if(RectTransformUtility.RectangleContainsScreenPoint(Rect, Input.mousePosition))
+        if (RectTransformUtility.RectangleContainsScreenPoint(Rect, Input.mousePosition))
         {
             Vector2 delta;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, null, out delta);
@@ -49,6 +44,7 @@ public class ColorPicker_Lobby : MonoBehaviour
             float x = Mathf.Clamp(delta.x / width, 0f, 1f);
             float y = Mathf.Clamp(delta.y / height, 0f, 1f);
             int texX = Mathf.RoundToInt(x * ColorTexture.width);
+            Debug.Log("<color=red>" + texX + "</color>");
             int texY = Mathf.RoundToInt(y * ColorTexture.height);
             if (Input.GetMouseButtonDown(0))
             {

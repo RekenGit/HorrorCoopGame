@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// Przypisz do obiektu: Player
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// Przypisz do obiektu: LocalPlayer - camera
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        sensitivity = 20 * UIManager.instance.optionSlider.value;
+        sensitivity = 20 * UIManager.instance.sensivitySlider.value;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleCursorMode();
@@ -54,13 +55,13 @@ public class CameraController : MonoBehaviour
         if(Cursor.lockState == CursorLockMode.None)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            UIManager.instance.GoBackFromOptions();
-            UIManager.instance.OpenGameGUI();
+            //UIManager.instance.GoBackFromOptions();
+            UIManager.instance.OpenMenu(UIManager.instance.gameGUI);
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
-            UIManager.instance.OpenEscMenu();
+            UIManager.instance.OpenMenu(UIManager.instance.mainGUI);
         }
     }
 }

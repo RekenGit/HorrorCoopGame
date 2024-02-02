@@ -30,6 +30,7 @@ public enum ClientPackets
     doorState,
     lobbyReadyButton,
     startGame,
+    PlayerMadeNoise,
 }
 
 public class Packet : IDisposable

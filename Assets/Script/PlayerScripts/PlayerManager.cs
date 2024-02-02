@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Przypisz do obiektu: LocalPlayer, Player
+using Assets.Class;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public Color pants;
     public Color shoes;
 
+    // Wybierz null jesli jest to Local player
     public GameObject topObject;
     public GameObject pantsObject;
     public GameObject shoesObject;
@@ -34,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         //wysyla dane na serwer że chce włączyć/wyłączyć latarkę
-        if (Input.GetKeyDown(KeyCode.F) && !UIManager.instance.isInMenu) ClientSend.PlayerFlash();
+        if (Input.GetKeyDown(BindList.FindBind("Flashlight").BindKeyCode) && !UIManager.instance.isGUIOpen) ClientSend.PlayerFlash();
         if (flashLight.enabled == true) ClientSend.PlayerFlashRotation();
     }
 }

@@ -114,6 +114,6 @@ public class ClientHandle : MonoBehaviour
     }
     public static void GameStarted(Packet _packet)
     {
-        UIManager.instance.OpenGameGUI();
+        UIManager.instance.OpenMenu(UIManager.instance.gameGUI);
     }
 }

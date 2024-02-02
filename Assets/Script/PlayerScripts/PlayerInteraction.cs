@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿// Przypisz do obiektu: LocalPlayer
+using Assets.Class;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     public Transform PlayerCamera;
     [Header("MaxDistance you can open or close the door.")]
@@ -10,8 +12,7 @@ public class DoorScript : MonoBehaviour
 
     void Update()
     {
-        //This will tell if the player press F on the Keyboard. P.S. You can change the key if you want.
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(BindList.FindBind("Interaction").BindKeyCode))
         {
             Pressed();
         }
@@ -19,7 +20,6 @@ public class DoorScript : MonoBehaviour
 
     void Pressed()
     {
-        //This will name the Raycasthit and came information of which object the raycast hit.
         RaycastHit doorhit;
 
         if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out doorhit, MaxDistance))
@@ -27,7 +27,7 @@ public class DoorScript : MonoBehaviour
             // if raycast hits, then it checks if it hit an object with the tag Door.
             if (doorhit.transform.tag == "Door")
             {
-                ClientSend.DoorsState(doorhit.transform.parent.parent.name);
+                ClientSend.DoorsState(doorhit.transform.parent.name);
             }
         }
     }

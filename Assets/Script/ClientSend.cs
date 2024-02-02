@@ -86,5 +86,12 @@ public class ClientSend : MonoBehaviour
             SendUDPData(_packet);
         }
     }
+    public static void PlayerMadeNoise()
+    {
+        using (Packet _packet = new Packet((int)ClientPackets.PlayerMadeNoise))
+        {
+            SendUDPData(_packet);
+        }
+    }
     #endregion
 }
